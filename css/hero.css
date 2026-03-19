@@ -1,0 +1,238 @@
+/* ============================================================
+   HERO — Full viewport intro section
+   ============================================================ */
+
+#hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── Left text block ── */
+.h-left {
+  position: absolute;
+  left: 5vw;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  opacity: 0;
+  max-width: 340px;
+}
+
+.h-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.h-eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.h-name {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-weight: 500;
+  line-height: 1.0;
+  letter-spacing: -0.01em;
+  color: var(--white);
+}
+
+.h-name em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+/* ── Right text block ── */
+.h-right {
+  position: absolute;
+  right: 5vw;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  text-align: right;
+  opacity: 0;
+  max-width: 300px;
+}
+
+.h-role {
+  font-family: var(--sans);
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  font-weight: 300;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  line-height: 2;
+}
+
+.h-role strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.3rem;
+}
+
+.h-role em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+  color: var(--gold);
+  display: block;
+  line-height: 1;
+}
+
+/* ── Avatar ── */
+#hero-avatar {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 92vh;
+  max-height: 900px;
+  width: auto;
+  object-fit: contain;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  animation: avatarFadeUp 1.4s var(--ease) 0.5s forwards;
+  filter:
+    drop-shadow(0 0 60px rgba(212, 168, 83, 0.1))
+    drop-shadow(0 40px 80px rgba(0, 0, 0, 0.6));
+}
+
+@keyframes avatarFadeUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ── Social sidebar ── */
+.h-socials {
+  position: absolute;
+  left: 2rem;
+  bottom: 3rem;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  opacity: 0;
+}
+
+.h-social {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dim);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius);
+  transition: all var(--fast);
+}
+
+.h-social:hover {
+  color: var(--gold);
+  border-color: var(--gold-dim);
+}
+
+.h-social svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
+/* ── Resume link ── */
+.h-resume {
+  position: absolute;
+  right: 2.5rem;
+  bottom: 3rem;
+  z-index: 3;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color var(--fast);
+  opacity: 0;
+}
+
+.h-resume::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.h-resume:hover { color: var(--gold); }
+
+/* ── Scroll hint ── */
+.scroll-hint {
+  position: absolute;
+  bottom: 1.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  color: var(--dim);
+  z-index: 3;
+  text-transform: uppercase;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 44px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .h-left,
+  .h-right     { display: none; }
+  .h-socials   { left: 1rem; bottom: 2rem; }
+  .h-resume    { right: 1rem; bottom: 2rem; }
+  #hero-avatar { height: 80vh; }
+}
